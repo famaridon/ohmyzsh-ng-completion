@@ -1,0 +1,90 @@
+_ng_completion () {
+  local words cword opts
+  read -Ac words
+  read -cn cword
+  let cword-=1
+
+  case $words[cword] in
+    add )
+      opts=$add_opts
+      ;;
+
+    analytics )
+      opts=$analytics_opts
+      ;;
+
+    b | build )
+      opts=$build_opts
+      ;;
+
+    deploy )
+      opts=$deploy_opts
+      ;;
+
+    config )
+      opts=$config_opts
+      ;;
+
+    doc | d )
+      opts=$doc_opts
+      ;;
+
+    e2e | e )
+      opts=$e2e_opts
+      ;;
+
+    generate | g)
+      opts=$generate_opts
+      ;;
+
+    help )
+      opts=$help_opts
+      ;;
+
+    lint | l )
+      opts=$lint_opts
+      ;;
+
+    new | n )
+      opts=$new_opts
+      ;;
+
+    run)
+      opts=$run_opts
+      ;;
+
+    serve | s )
+      opts=$serve_opts
+      ;;
+
+    test | t )
+      opts=$test_opts
+      ;;
+
+    update )
+      opts=$update_opts
+      ;;
+
+    version | v )
+      opts=$version_opts
+      ;;
+
+    xi18n | i18n-extract )
+      opts=$xi18n_opts
+      ;;
+
+    * )
+      case $words[1] in
+        ng )
+          opts=$ng_opts
+          ;;
+        * )
+          opts=''
+          ;;
+      esac
+  esac
+
+  reply=(${=opts})
+}
+
+compctl -K _ng_completion ng
