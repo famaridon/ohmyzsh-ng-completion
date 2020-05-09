@@ -4,7 +4,7 @@ _ng_completion () {
   read -cn cword
   let cword-=1
 
-  case $words[cword] in
+  case $words[2] in
     add )
       opts=$add_opts
       ;;
